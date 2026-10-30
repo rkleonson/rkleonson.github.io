@@ -24,29 +24,128 @@
     </script>
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: #0d1117; color: #c9d1d9; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 12px; max-width: 500px; width: 100%; padding: 32px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: system-ui, -apple-system, sans-serif; 
+        }
+
+        body { 
+            background: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%); 
+            color: #c9d1d9; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Interactive Canvas Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card { 
+            background: rgba(22, 27, 34, 0.85); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(88, 166, 255, 0.25); 
+            border-radius: 16px; 
+            max-width: 500px; 
+            width: 100%; 
+            padding: 36px; 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(88, 166, 255, 0.5);
+            transform: translateY(-4px);
+        }
+
         .profile-img {
             width: 130px;
             height: 130px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #58a6ff;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin-bottom: 18px;
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
         }
-        h1 { color: #ffffff; font-size: 28px; margin-bottom: 8px; }
-        .subtitle { color: #58a6ff; font-size: 16px; font-weight: 500; margin-bottom: 20px; }
-        .bio { color: #8b949e; font-size: 15px; line-height: 1.6; margin-bottom: 24px; }
-        .info-box { background-color: #0d1117; border: 1px solid #21262d; border-radius: 8px; padding: 16px; text-align: left; margin-bottom: 24px; font-size: 14px; }
-        .info-box p { margin-bottom: 8px; }
-        .info-box p:last-child { margin-bottom: 0; }
-        .btn { display: inline-block; background-color: #238636; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; font-size: 14px; }
-        .btn:hover { background-color: #2ea043; }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 28px; 
+            margin-bottom: 8px; 
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle { 
+            color: #58a6ff; 
+            font-size: 16px; 
+            font-weight: 500; 
+            margin-bottom: 20px; 
+        }
+
+        .bio { 
+            color: #8b949e; 
+            font-size: 15px; 
+            line-height: 1.6; 
+            margin-bottom: 24px; 
+        }
+
+        .info-box { 
+            background: rgba(13, 17, 23, 0.75); 
+            border: 1px solid rgba(48, 54, 61, 0.7); 
+            border-radius: 10px; 
+            padding: 16px; 
+            text-align: left; 
+            margin-bottom: 24px; 
+            font-size: 14px; 
+        }
+
+        .info-box p { 
+            margin-bottom: 8px; 
+        }
+
+        .info-box p:last-child { 
+            margin-bottom: 0; 
+        }
+
+        .btn { 
+            display: inline-block; 
+            background: linear-gradient(135deg, #238636 0%, #2ea043 100%); 
+            color: #ffffff; 
+            text-decoration: none; 
+            padding: 12px 24px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            box-shadow: 0 4px 14px rgba(35, 134, 54, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover { 
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(35, 134, 54, 0.6);
+        }
     </style>
 </head>
 <body>
+    <canvas id="bg-canvas"></canvas>
+
     <div class="card">
         <img src="profile.jpg" alt="Rk Leonson" class="profile-img">
         <h1>Rk Leonson</h1>
@@ -63,5 +162,94 @@
             Connect on LinkedIn
         </a>
     </div>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 8 + 3;
+                this.speedX = (Math.random() - 0.5) * 5;
+                this.speedY = (Math.random() - 0.5) * 5;
+                // ஒளிரும் நியான் வண்ணங்கள் (Cyan, Purple, Pink, Lime, Orange)
+                const colors = ['#00f0ff', '#7000ff', '#ff007b', '#00ff66', '#ffb703'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.alpha = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= this.decay;
+                if (this.size > 0.2) this.size -= 0.1;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = this.color;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function createBurst(x, y, count = 12) {
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle(x, y));
+            }
+        }
+
+        // மொபைல் Touch அல்லது கணினி Click/Move செயல்களுக்கு
+        window.addEventListener('mousemove', (e) => {
+            createBurst(e.clientX, e.clientY, 3);
+        });
+
+        window.addEventListener('click', (e) => {
+            createBurst(e.clientX, e.clientY, 20);
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                createBurst(e.touches[0].clientX, e.touches[0].clientY, 4);
+            }
+        });
+
+        window.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                createBurst(e.touches[0].clientX, e.touches[0].clientY, 20);
+            }
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].alpha <= 0 || particles[i].size <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
