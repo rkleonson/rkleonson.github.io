@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rk Leonson | AI Student & Portfolio</title>
-    <meta name="description" content="Official portfolio of Rk Leonson. AI Student and Graphic Designer.">
+    <title>Rk Leonson — AI Undergraduate & Creative Designer</title>
+    <meta name="description" content="Portfolio of Rk Leonson. AI Undergraduate and Creative Designer exploring artificial intelligence and digital design.">
     <meta name="google-site-verification" content="LZDTgxFuKb4G1hcOIGxkNAI3MVPp67BNHS8075dFdAM" />
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Rk Leonson",
-      "jobTitle": "AI Student & Graphic Designer",
+      "jobTitle": "AI Undergraduate & Creative Designer",
       "alumniOf": {
         "@type": "CollegeOrUniversity",
-        "name": "Plymouth University / NSBM Green University"
+        "name": "NSBM Green University / Plymouth University"
       },
       "sameAs": [
         "https://www.linkedin.com/in/rk-leonson-3b1787280"
@@ -24,232 +30,397 @@
     </script>
 
     <style>
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            font-family: system-ui, -apple-system, sans-serif; 
+        :root {
+            --bg: #faf9f6;
+            --text-main: #111111;
+            --text-muted: #595959;
+            --text-subtle: #8c8c8c;
+            --accent-border: #e5e2dc;
+            --card-bg: #ffffff;
+            --serif-font: 'Newsreader', Georgia, serif;
+            --sans-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
         }
 
-        body { 
-            background: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%); 
-            color: #c9d1d9; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            padding: 20px; 
-            overflow-x: hidden;
-            position: relative;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Interactive Canvas Background */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--sans-font);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .card { 
-            background: rgba(22, 27, 34, 0.85); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(88, 166, 255, 0.25); 
-            border-radius: 16px; 
-            max-width: 500px; 
-            width: 100%; 
-            padding: 36px; 
-            text-align: center; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 28px;
         }
 
-        .card:hover {
-            border-color: rgba(88, 166, 255, 0.5);
-            transform: translateY(-4px);
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0;
         }
 
-        .profile-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
+        .brand-logo {
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -0.8px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .nav-btn {
+            border: 1px solid #111;
+            padding: 9px 18px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--text-main);
+            color: #fff;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.25fr 0.95fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px 0 70px;
+        }
+
+        .tagline-bullet {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #636260;
+            margin-bottom: 36px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tagline-bullet::before {
+            content: "•";
+            color: #888;
+            font-size: 18px;
+        }
+
+        .name-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-subtle);
+            margin-bottom: 14px;
+        }
+
+        .headline {
+            font-size: clamp(44px, 5.5vw, 68px);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -2px;
+            color: var(--text-main);
+            margin-bottom: 26px;
+        }
+
+        .headline em {
+            font-family: var(--serif-font);
+            font-weight: 400;
+            font-style: italic;
+            color: #7b6552;
+            padding-right: 4px;
+        }
+
+        .bio-text {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 540px;
+            line-height: 1.65;
+            margin-bottom: 34px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .primary-btn {
+            background-color: var(--text-main);
+            color: #ffffff;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
+        }
+
+        .primary-btn:hover {
+            opacity: 0.9;
+        }
+
+        .secondary-link {
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 2px;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .secondary-link:hover {
+            border-color: var(--text-main);
+        }
+
+        .pills {
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-subtle);
+            display: flex;
+            gap: 16px;
+        }
+
+        .pills span:not(:last-child)::after {
+            content: "|";
+            margin-left: 16px;
+            color: #ccc;
+        }
+
+        /* --- PORTRAIT CARD (RIGHT SIDE) --- */
+        .portrait-wrapper {
+            background: #ffffff;
+            padding: 24px;
+            border: 1px solid var(--accent-border);
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+        }
+
+        .card-top-tag {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-subtle);
+            margin-bottom: 16px;
+        }
+
+        .portrait-img-box {
+            width: 100%;
+            height: 440px;
+            overflow: hidden;
+            background: #ece8e1;
+        }
+
+        .portrait-img-box img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border: 3px solid #58a6ff;
-            margin-bottom: 18px;
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+            display: block;
         }
 
-        h1 { 
-            color: #ffffff; 
-            font-size: 28px; 
-            margin-bottom: 8px; 
-            letter-spacing: -0.5px;
+        .card-footer {
+            margin-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
-        .subtitle { 
-            color: #58a6ff; 
-            font-size: 16px; 
-            font-weight: 500; 
-            margin-bottom: 20px; 
+        .card-footer-text p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.4;
         }
 
-        .bio { 
-            color: #8b949e; 
-            font-size: 15px; 
-            line-height: 1.6; 
-            margin-bottom: 24px; 
+        .card-footer-text p:first-child {
+            color: var(--text-main);
+            font-weight: 600;
         }
 
-        .info-box { 
-            background: rgba(13, 17, 23, 0.75); 
-            border: 1px solid rgba(48, 54, 61, 0.7); 
-            border-radius: 10px; 
-            padding: 16px; 
-            text-align: left; 
-            margin-bottom: 24px; 
-            font-size: 14px; 
+        .arrow-icon {
+            font-size: 22px;
+            color: var(--text-muted);
+            text-decoration: none;
+            line-height: 1;
         }
 
-        .info-box p { 
-            margin-bottom: 8px; 
+        /* --- STATS SECTION --- */
+        .stats-strip {
+            border-top: 1px solid var(--accent-border);
+            padding: 40px 0;
+            display: flex;
+            gap: 70px;
         }
 
-        .info-box p:last-child { 
-            margin-bottom: 0; 
+        .stat-item {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
         }
 
-        .btn { 
-            display: inline-block; 
-            background: linear-gradient(135deg, #238636 0%, #2ea043 100%); 
-            color: #ffffff; 
-            text-decoration: none; 
-            padding: 12px 24px; 
-            border-radius: 8px; 
-            font-weight: 600; 
-            font-size: 14px; 
-            box-shadow: 0 4px 14px rgba(35, 134, 54, 0.4);
-            transition: all 0.2s ease;
+        .stat-num {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--text-main);
         }
 
-        .btn:hover { 
-            transform: scale(1.03);
-            box-shadow: 0 6px 20px rgba(35, 134, 54, 0.6);
+        .stat-label {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stat-label a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .portrait-img-box {
+                height: 380px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .stats-strip {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
         }
     </style>
 </head>
 <body>
-    <canvas id="bg-canvas"></canvas>
 
-    <div class="card">
-        <img src="profile.jpg" alt="Rk Leonson" class="profile-img">
-        <h1>Rk Leonson</h1>
-        <div class="subtitle">AI Undergraduate & Creative Designer</div>
-        <p class="bio">
-            Welcome to my personal portfolio. Exploring artificial intelligence systems, software solutions, and digital creative design.
-        </p>
-        <div class="info-box">
-            <p><strong>Education:</strong> Plymouth University / NSBM Green University</p>
-            <p><strong>Field:</strong> Artificial Intelligence</p>
-            <p><strong>Focus:</strong> Machine Learning, UI/UX & Graphic Design</p>
-        </div>
-        <a class="btn" href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer">
-            Connect on LinkedIn
-        </a>
+    <div class="container">
+        <!-- Header -->
+        <nav>
+            <a href="#" class="brand-logo">rkleonson</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+            <a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" class="nav-btn">
+                Connect ↗
+            </a>
+        </nav>
+
+        <!-- Hero -->
+        <main class="hero">
+            <div class="hero-content">
+                <div class="tagline-bullet">ARTIFICIAL INTELLIGENCE. CREATIVE DESIGN.</div>
+                <div class="name-label">RK LEONSON</div>
+                
+                <h1 class="headline">
+                    Ideas with purpose.<br>
+                    AI with <em>impact.</em>
+                </h1>
+
+                <p class="bio-text">
+                    I'm an AI undergraduate and creative developer. I build intelligent solutions, explore machine learning architectures, and design digital brand experiences that combine engineering with aesthetics.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" class="primary-btn">
+                        Explore my work ↗
+                    </a>
+                    <a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" class="secondary-link">
+                        Connect with me ↗
+                    </a>
+                </div>
+
+                <div class="pills">
+                    <span>AI UNDERGRADUATE</span>
+                    <span>CREATIVE DESIGNER</span>
+                    <span>LIFELONG LEARNER</span>
+                </div>
+            </div>
+
+            <!-- Right Portrait Card -->
+            <div class="portrait-wrapper">
+                <div class="card-top-tag">LEARN. BUILD. LEAD.</div>
+                <div class="portrait-img-box">
+                    <img src="profile.jpg" alt="Rk Leonson">
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-text">
+                        <p>Curiosity to conviction.</p>
+                        <p>Research to real products.</p>
+                    </div>
+                    <a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" class="arrow-icon">↗</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Stats Strip -->
+        <section class="stats-strip">
+            <div class="stat-item">
+                <span class="stat-num">AI & ML</span>
+                <span class="stat-label">NSBM / Plymouth Univ</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">Creative</span>
+                <span class="stat-label"><a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank">Brand & UI Design ↗</a></span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">LinkedIn</span>
+                <span class="stat-label"><a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank">Connect Online ↗</a></span>
+            </div>
+        </section>
     </div>
 
-    <script>
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 8 + 3;
-                this.speedX = (Math.random() - 0.5) * 5;
-                this.speedY = (Math.random() - 0.5) * 5;
-                // ஒளிரும் நியான் வண்ணங்கள் (Cyan, Purple, Pink, Lime, Orange)
-                const colors = ['#00f0ff', '#7000ff', '#ff007b', '#00ff66', '#ffb703'];
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.alpha = 1;
-                this.decay = Math.random() * 0.02 + 0.015;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.alpha -= this.decay;
-                if (this.size > 0.2) this.size -= 0.1;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = Math.max(0, this.alpha);
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = this.color;
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        function createBurst(x, y, count = 12) {
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle(x, y));
-            }
-        }
-
-        // மொபைல் Touch அல்லது கணினி Click/Move செயல்களுக்கு
-        window.addEventListener('mousemove', (e) => {
-            createBurst(e.clientX, e.clientY, 3);
-        });
-
-        window.addEventListener('click', (e) => {
-            createBurst(e.clientX, e.clientY, 20);
-        });
-
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                createBurst(e.touches[0].clientX, e.touches[0].clientY, 4);
-            }
-        });
-
-        window.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 0) {
-                createBurst(e.touches[0].clientX, e.touches[0].clientY, 20);
-            }
-        });
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                if (particles[i].alpha <= 0 || particles[i].size <= 0) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
 </body>
 </html>
