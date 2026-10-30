@@ -9,7 +9,7 @@
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="LZDTgxFuKb4G1hcOIGxkNAI3MVPp67BNHS8075dFdAM" />
 
-    <!-- Open Graph for Social Preview & Search Consistency -->
+    <!-- Open Graph for Social Preview -->
     <meta property="og:title" content="Rk Leonson — AI Undergraduate & Creative Designer">
     <meta property="og:description" content="Portfolio of Rk Leonson. AI student and digital designer.">
     <meta property="og:image" content="https://rkleonson.github.io/profile.jpg">
@@ -19,7 +19,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
 
     <!-- Structured Data (JSON-LD Schema) for Google Search & Image SEO -->
     <script type="application/ld+json">
@@ -43,13 +43,12 @@
 
     <style>
         :root {
-            --bg: #faf9f6;
-            --text-main: #111111;
-            --text-muted: #595959;
-            --text-subtle: #8c8c8c;
-            --accent-border: #e5e2dc;
-            --serif-font: 'Newsreader', Georgia, serif;
-            --sans-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --primary: #ffffff;
+            --accent: #58a6ff;
+            --glass-bg: rgba(18, 22, 28, 0.78);
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --font-main: 'Montserrat', -apple-system, sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
         }
 
         * {
@@ -59,378 +58,430 @@
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: var(--sans-font);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            font-family: var(--font-main);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: #0d0f12;
+            position: relative;
         }
 
-        .container {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 28px;
+        /* Video Background Container */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
         }
 
-        /* Navigation */
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.65) contrast(1.1);
+        }
+
+        /* Dark Vignette Overlay */
+        .dark-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(13, 15, 18, 0.45) 0%, rgba(5, 7, 10, 0.92) 100%);
+            z-index: -1;
+        }
+
+        /* Top Navigation */
         nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 28px 0;
+            padding: 35px 60px;
+            z-index: 10;
         }
 
-        .brand-logo {
-            font-weight: 800;
-            font-size: 24px;
-            letter-spacing: -0.8px;
-            color: var(--text-main);
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             text-decoration: none;
+            color: #ffffff;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
         }
 
         .nav-links {
             display: flex;
-            gap: 36px;
+            gap: 32px;
             list-style: none;
-            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-main);
-        }
-
-        .nav-btn {
-            border: 1px solid #111;
-            padding: 9px 18px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-main);
-            text-decoration: none;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .nav-btn:hover {
-            background-color: var(--text-main);
-            color: #fff;
-        }
-
-        /* Hero */
-        .hero {
-            display: grid;
-            grid-template-columns: 1.25fr 0.95fr;
-            gap: 60px;
-            align-items: center;
-            padding: 60px 0 70px;
-        }
-
-        .tagline-bullet {
+            color: rgba(255, 255, 255, 0.7);
             font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-            color: #636260;
-            margin-bottom: 36px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tagline-bullet::before {
-            content: "•";
-            color: #888;
-            font-size: 18px;
-        }
-
-        .name-label {
-            font-size: 13px;
-            font-weight: 700;
             letter-spacing: 2px;
+            font-weight: 600;
             text-transform: uppercase;
-            color: var(--text-subtle);
-            margin-bottom: 14px;
+            transition: color 0.3s;
         }
 
-        .headline {
-            font-size: clamp(44px, 5.5vw, 68px);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ffffff;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 4px;
+        }
+
+        /* Center Hero Display */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-frame {
+            width: 154px;
+            height: 154px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(88, 166, 255, 0.3), rgba(255, 255, 255, 0.1));
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(88, 166, 255, 0.2);
+            margin-bottom: 28px;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .avatar-frame:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+        }
+
+        .hero-title {
+            font-size: clamp(34px, 5vw, 54px);
             font-weight: 700;
-            line-height: 1.08;
-            letter-spacing: -2px;
-            color: var(--text-main);
-            margin-bottom: 26px;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
         }
 
-        .headline em {
-            font-family: var(--serif-font);
-            font-weight: 400;
-            font-style: italic;
-            color: #7b6552;
-            padding-right: 4px;
-        }
-
-        .bio-text {
-            font-size: 17px;
-            color: var(--text-muted);
-            max-width: 540px;
-            line-height: 1.65;
+        .hero-subtitle {
+            font-size: 13px;
+            letter-spacing: 4px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.75);
+            text-transform: uppercase;
             margin-bottom: 34px;
         }
 
-        .hero-actions {
+        .action-group {
             display: flex;
+            gap: 18px;
             align-items: center;
-            gap: 24px;
-            margin-bottom: 40px;
         }
 
-        .primary-btn {
-            background-color: var(--text-main);
+        .btn-view-details {
+            background: rgba(255, 255, 255, 0.12);
             color: #ffffff;
-            padding: 14px 28px;
-            font-size: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 13px 32px;
+            font-size: 13px;
+            letter-spacing: 2px;
             font-weight: 600;
-            text-decoration: none;
-            border-radius: 4px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: opacity 0.2s;
         }
 
-        .primary-btn:hover {
-            opacity: 0.9;
+        .btn-view-details:hover {
+            background: #ffffff;
+            color: #0d0f12;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25);
         }
 
-        .secondary-link {
-            color: var(--text-main);
-            font-size: 15px;
+        .btn-linkedin {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 13px 26px;
+            font-size: 13px;
+            letter-spacing: 1.5px;
             font-weight: 600;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding-bottom: 2px;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
+            border-radius: 30px;
+            transition: all 0.3s ease;
         }
 
-        .secondary-link:hover {
-            border-color: var(--text-main);
+        .btn-linkedin:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.08);
         }
 
-        .pills {
-            font-size: 11.5px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-subtle);
-            display: flex;
-            gap: 16px;
-        }
-
-        .pills span:not(:last-child)::after {
-            content: "|";
-            margin-left: 16px;
-            color: #ccc;
-        }
-
-        /* Right Card & Profile Image */
-        .portrait-wrapper {
-            background: #ffffff;
-            padding: 24px;
-            border: 1px solid var(--accent-border);
-            border-radius: 4px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-        }
-
-        .card-top-tag {
-            font-size: 10.5px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-subtle);
-            margin-bottom: 16px;
-        }
-
-        .portrait-img-box {
-            width: 100%;
-            height: 440px;
-            overflow: hidden;
-            background: #ece8e1;
-        }
-
-        .portrait-img-box img {
+        /* --- DETAILS MODAL WITH LUXURY TRANSITION --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .card-footer {
-            margin-top: 18px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 100;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .card-footer-text p {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            line-height: 1.4;
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .card-footer-text p:first-child {
-            color: var(--text-main);
+        .modal-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            max-width: 640px;
+            width: 100%;
+            padding: 42px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+            transform: translateY(40px) scale(0.96);
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 22px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+        }
+
+        .modal-header h3 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .modal-header p {
+            color: var(--accent);
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .modal-body {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 28px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 26px;
+        }
+
+        .info-cell span {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 4px;
+        }
+
+        .info-cell strong {
+            font-size: 14px;
+            color: #ffffff;
             font-weight: 600;
         }
 
-        .arrow-icon {
-            font-size: 22px;
-            color: var(--text-muted);
-            text-decoration: none;
-            line-height: 1;
-        }
-
-        /* Stats Strip */
-        .stats-strip {
-            border-top: 1px solid var(--accent-border);
-            padding: 40px 0;
-            display: flex;
-            gap: 70px;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-
-        .stat-num {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: var(--text-main);
-        }
-
-        .stat-label {
-            font-size: 14.5px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .stat-label a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        @media (max-width: 960px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-            .portrait-img-box {
-                height: 380px;
+        @media (max-width: 768px) {
+            nav {
+                padding: 24px;
             }
             .nav-links {
                 display: none;
             }
-            .stats-strip {
-                flex-wrap: wrap;
-                gap: 30px;
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .action-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-view-details, .btn-linkedin {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header -->
-        <nav>
-            <a href="#" class="brand-logo">rkleonson</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#education">Education</a></li>
-            </ul>
-            <a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" class="nav-btn">
-                Connect ↗
+    <!-- Cinematic Looping Video Background -->
+    <div class="video-container">
+        <video autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="dark-overlay"></div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">Rk Leonson</a>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="openModal()">About</a></li>
+            <li><a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Center Hero Section -->
+    <main class="hero-section">
+        <div class="avatar-frame">
+            <img src="profile.jpg" alt="Rk Leonson - AI Undergraduate & Creative Designer" title="Rk Leonson" class="avatar-img">
+        </div>
+
+        <h1 class="hero-title">Hi, I'm Rk Leonson</h1>
+        <div class="hero-subtitle">AI Undergraduate & Creative Designer</div>
+
+        <div class="action-group">
+            <button class="btn-view-details" onclick="openModal()">
+                View Profile & Details ↘
+            </button>
+            <a class="btn-linkedin" href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer">
+                LinkedIn ↗
             </a>
-        </nav>
+        </div>
+    </main>
 
-        <!-- Hero Section -->
-        <main class="hero">
-            <div class="hero-content">
-                <div class="tagline-bullet">ARTIFICIAL INTELLIGENCE. CREATIVE DESIGN.</div>
-                <div class="name-label">RK LEONSON</div>
-                
-                <h1 class="headline">
-                    Ideas with purpose.<br>
-                    AI with <em>impact.</em>
-                </h1>
-
-                <p class="bio-text">
-                    I'm an AI undergraduate and creative developer. I build intelligent solutions, explore machine learning architectures, and design digital brand experiences that combine engineering with aesthetics.
-                </p>
-
-                <div class="hero-actions">
-                    <a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" class="primary-btn">
-                        Explore my work ↗
-                    </a>
-                    <a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" class="secondary-link">
-                        Connect with me ↗
-                    </a>
-                </div>
-
-                <div class="pills">
-                    <span>AI UNDERGRADUATE</span>
-                    <span>CREATIVE DESIGNER</span>
-                    <span>LIFELONG LEARNER</span>
-                </div>
+    <!-- Details Modal (Smooth Pop-up on Click) -->
+    <div class="modal-overlay" id="detailsModal" onclick="closeOnOutside(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-header">
+                <h3>Rk Leonson</h3>
+                <p>Curiosity to Conviction • Research to Products</p>
             </div>
+            
+            <p class="modal-body">
+                Artificial Intelligence undergraduate exploring machine learning algorithms, autonomous systems, and interactive creative branding. Combining technical software engineering with high-end digital design aesthetics.
+            </p>
 
-            <!-- Profile Image Card with Image SEO attributes -->
-            <div class="portrait-wrapper">
-                <div class="card-top-tag">LEARN. BUILD. LEAD.</div>
-                <div class="portrait-img-box">
-                    <img src="profile.jpg" alt="Rk Leonson - AI Undergraduate and Creative Designer" title="Rk Leonson">
+            <div class="info-grid">
+                <div class="info-cell">
+                    <span>Education</span>
+                    <strong>NSBM / Plymouth Univ</strong>
                 </div>
-                <div class="card-footer">
-                    <div class="card-footer-text">
-                        <p>Curiosity to conviction.</p>
-                        <p>Research to real products.</p>
-                    </div>
-                    <a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" class="arrow-icon">↗</a>
+                <div class="info-cell">
+                    <span>Field of Study</span>
+                    <strong>BSc (Hons) in Artificial Intelligence</strong>
+                </div>
+                <div class="info-cell">
+                    <span>Focus Areas</span>
+                    <strong>Machine Learning & Neural Nets</strong>
+                </div>
+                <div class="info-cell">
+                    <span>Creative Disciplines</span>
+                    <strong>UI/UX, Brand Identity & Media</strong>
                 </div>
             </div>
-        </main>
 
-        <!-- Stats Section -->
-        <section class="stats-strip">
-            <div class="stat-item">
-                <span class="stat-num">AI & ML</span>
-                <span class="stat-label">NSBM / Plymouth Univ</span>
+            <div style="text-align: right;">
+                <a class="btn-view-details" href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank" rel="noopener noreferrer" style="padding: 10px 24px; font-size: 12px;">
+                    Connect on LinkedIn ↗
+                </a>
             </div>
-            <div class="stat-item">
-                <span class="stat-num">Creative</span>
-                <span class="stat-label"><a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank">Brand & UI Design ↗</a></span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">LinkedIn</span>
-                <span class="stat-label"><a href="https://www.linkedin.com/in/rk-leonson-3b1787280" target="_blank">Connect Online ↗</a></span>
-            </div>
-        </section>
+        </div>
     </div>
 
+    <!-- Interactive Script for Smooth Modal Transition -->
+    <script>
+        const modal = document.getElementById('detailsModal');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeOnOutside(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+
+        // ESC விசை அழுத்தினால் Modal மூடப்பட
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
