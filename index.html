@@ -4,21 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rk Leonson — AI Undergraduate & Creative Designer</title>
-    <meta name="description" content="Portfolio of Rk Leonson. AI Undergraduate and Creative Designer exploring artificial intelligence and digital design.">
+    <meta name="description" content="Official portfolio of Rk Leonson. AI Undergraduate and Creative Designer exploring artificial intelligence, machine learning, and digital design.">
+    <meta name="author" content="Rk Leonson">
+    <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="LZDTgxFuKb4G1hcOIGxkNAI3MVPp67BNHS8075dFdAM" />
+
+    <!-- Open Graph for Social Preview & Search Consistency -->
+    <meta property="og:title" content="Rk Leonson — AI Undergraduate & Creative Designer">
+    <meta property="og:description" content="Portfolio of Rk Leonson. AI student and digital designer.">
+    <meta property="og:image" content="https://rkleonson.github.io/profile.jpg">
+    <meta property="og:url" content="https://rkleonson.github.io">
+    <meta property="og:type" content="website">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
 
-    <!-- Schema Markup -->
+    <!-- Structured Data (JSON-LD Schema) for Google Search & Image SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Rk Leonson",
+      "alternateName": "Leonson",
       "jobTitle": "AI Undergraduate & Creative Designer",
+      "image": "https://rkleonson.github.io/profile.jpg",
+      "url": "https://rkleonson.github.io",
       "alumniOf": {
         "@type": "CollegeOrUniversity",
         "name": "NSBM Green University / Plymouth University"
@@ -36,7 +48,6 @@
             --text-muted: #595959;
             --text-subtle: #8c8c8c;
             --accent-border: #e5e2dc;
-            --card-bg: #ffffff;
             --serif-font: 'Newsreader', Georgia, serif;
             --sans-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
         }
@@ -61,7 +72,7 @@
             padding: 0 28px;
         }
 
-        /* --- NAVIGATION --- */
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -115,7 +126,7 @@
             color: #fff;
         }
 
-        /* --- HERO SECTION --- */
+        /* Hero */
         .hero {
             display: grid;
             grid-template-columns: 1.25fr 0.95fr;
@@ -234,7 +245,7 @@
             color: #ccc;
         }
 
-        /* --- PORTRAIT CARD (RIGHT SIDE) --- */
+        /* Right Card & Profile Image */
         .portrait-wrapper {
             background: #ffffff;
             padding: 24px;
@@ -291,7 +302,7 @@
             line-height: 1;
         }
 
-        /* --- STATS SECTION --- */
+        /* Stats Strip */
         .stats-strip {
             border-top: 1px solid var(--accent-border);
             padding: 40px 0;
@@ -323,7 +334,6 @@
             text-decoration: none;
         }
 
-        /* Responsive Breakpoints */
         @media (max-width: 960px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -358,7 +368,7 @@
             </a>
         </nav>
 
-        <!-- Hero -->
+        <!-- Hero Section -->
         <main class="hero">
             <div class="hero-content">
                 <div class="tagline-bullet">ARTIFICIAL INTELLIGENCE. CREATIVE DESIGN.</div>
@@ -389,11 +399,11 @@
                 </div>
             </div>
 
-            <!-- Right Portrait Card -->
+            <!-- Profile Image Card with Image SEO attributes -->
             <div class="portrait-wrapper">
                 <div class="card-top-tag">LEARN. BUILD. LEAD.</div>
                 <div class="portrait-img-box">
-                    <img src="profile.jpg" alt="Rk Leonson">
+                    <img src="profile.jpg" alt="Rk Leonson - AI Undergraduate and Creative Designer" title="Rk Leonson">
                 </div>
                 <div class="card-footer">
                     <div class="card-footer-text">
@@ -405,7 +415,7 @@
             </div>
         </main>
 
-        <!-- Stats Strip -->
+        <!-- Stats Section -->
         <section class="stats-strip">
             <div class="stat-item">
                 <span class="stat-num">AI & ML</span>
